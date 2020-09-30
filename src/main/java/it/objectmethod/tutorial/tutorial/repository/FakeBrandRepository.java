@@ -15,7 +15,7 @@ public class FakeBrandRepository {
 		
 		BrandEntity brand = new BrandEntity();
 		brand.setId(id);
-		brand.setBrandName("Fiat");
+		brand.setBrandName("Mer");
 		brand.setModels(new ArrayList<CarEntity>());
 		
 		for(long i = 0; i<3; i++) {
