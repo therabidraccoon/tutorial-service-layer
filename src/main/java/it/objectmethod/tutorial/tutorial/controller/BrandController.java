@@ -1,15 +1,12 @@
 package it.objectmethod.tutorial.tutorial.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import it.objectmethod.tutorial.tutorial.service.BrandService;
 import it.objectmethod.tutorial.tutorial.service.dto.BrandDTO;
@@ -22,8 +19,9 @@ public class BrandController {
 	public BrandService brandService;
 
 	@GetMapping("/{id}/find")
-	public BrandDTO findOne(@PathVariable("id") Long id)  {
-		return brandService.findById(id);
+	public BrandDTO findOne(@PathVariable("id") Long id) {
+		BrandDTO brand = brandService.findById(id);
+		return brand;
 	}
 
 	@GetMapping("/find-all")
