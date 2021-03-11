@@ -9,7 +9,9 @@ import it.objectmethod.tutorial.tutorial.domain.Order;
 import it.objectmethod.tutorial.tutorial.domain.User;
 import it.objectmethod.tutorial.tutorial.repository.FakeOrderRepository;
 import it.objectmethod.tutorial.tutorial.repository.FakeUserRepository;
+import it.objectmethod.tutorial.tutorial.service.dto.OrderCompleteDTO;
 import it.objectmethod.tutorial.tutorial.service.dto.OrderDTO;
+import it.objectmethod.tutorial.tutorial.service.mapper.OrderCompleteMapper;
 import it.objectmethod.tutorial.tutorial.service.mapper.OrderMapper;
 
 @Component
@@ -17,6 +19,9 @@ public class OrderService {
 
 	@Autowired
 	private OrderMapper ordMapper;
+
+	@Autowired
+	private OrderCompleteMapper ordCompMapper;
 
 	@Autowired
 	private FakeUserRepository fakeUserRep;
@@ -37,6 +42,22 @@ public class OrderService {
 		order.setUser(user);
 		order = fakeOrdRep.save(order);
 		orderDto = ordMapper.toDto(order);
+		return orderDto;
+	}
+
+	public List<OrderCompleteDTO> findAllComplete() {
+		List<OrderCompleteDTO> orderDTOList = null;
+		List<Order> orders = fakeOrdRep.findAll();
+		orderDTOList = ordCompMapper.toDto(orders);
+		return orderDTOList;
+	}
+
+	public OrderCompleteDTO save(OrderCompleteDTO orderDto) {
+		Order order = ordCompMapper.toEntity(orderDto);
+		User user = fakeUserRep.findById(orderDto.getIdUser());
+		order.setUser(user);
+		order = fakeOrdRep.save(order);
+		orderDto = ordCompMapper.toDto(order);
 		return orderDto;
 	}
 
