@@ -3,7 +3,7 @@ package it.objectmethod.tutorial.tutorial.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import it.objectmethod.tutorial.tutorial.domain.Order;
 import it.objectmethod.tutorial.tutorial.domain.User;
@@ -14,7 +14,7 @@ import it.objectmethod.tutorial.tutorial.service.dto.OrderDTO;
 import it.objectmethod.tutorial.tutorial.service.mapper.OrderCompleteMapper;
 import it.objectmethod.tutorial.tutorial.service.mapper.OrderMapper;
 
-@Component
+@Service
 public class OrderService {
 
 	@Autowired
